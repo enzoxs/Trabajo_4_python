@@ -15,8 +15,8 @@ class trabajador:
             diccionario={"nombre":nombre,"sueldo":sueldo}
             self.empleado.append(diccionario)
         
-    def imprimir(self):
-            print(self.empleado)
+  #  def imprimir(self):
+          #  print(self.empleado)
 
 
     def menu(self):
@@ -48,7 +48,7 @@ class trabajador:
             if(self.empleado[i]["sueldo"]<10000):
                 self.impuesto=self.empleado[i]["sueldo"]*0.10
                 #comentario = f"El empleado: ",self.empleado[i]["nombre"],"no paga impuesto"
-                comentario =  " ".join(("El empleado: ",self.empleado[i]["nombre"],"no paga impuesto"))
+                comentario =  " ".join(("El empleado ",self.empleado[i]["nombre"],"no paga impuesto"))
                 self.c_impuesto.append(comentario)
                 #print(f"El empleado: ",self.empleado[i]["nombre"],"no paga impuesto")
                 #print (comentario)
@@ -56,7 +56,7 @@ class trabajador:
             if(self.empleado[i]["sueldo"]>=10000 and self.empleado[i]["sueldo"]<=30000):
                 self.impuesto=self.empleado[i]["sueldo"]*0.10
                 #comentario= f"El decuento para el empleado: ",self.empleado[i]["nombre"], "es de un 10%", f"con un total de descuento de {self.impuesto}"
-                comentario = " ".join(("El descuento para el empleado:", self.empleado[i]['nombre'], "es de un 10%", "con un total de descuento de", str(self.impuesto)))
+                comentario = " ".join(("El descuento para el empleado ", self.empleado[i]['nombre'], "es de un 10%", "con un total de descuento de", str(self.impuesto)))
                 self.c_impuesto.append(comentario)
                 
                 # print(f"El decuento para el empleado: ",self.empleado[i]["nombre"],"es de un 10%")
@@ -65,7 +65,7 @@ class trabajador:
             elif(self.empleado[i]["sueldo"]>30000 and self.empleado[i]["sueldo"]<=50000):
                 self.impuesto=self.empleado[i]["sueldo"]*0.20
                 #comentario= f"El decuento para el empleado: ",self.empleado[i]["nombre"], "es de un 20%", f"con un total de descuento de {self.impuesto}"
-                comentario = " ".join(("El descuento para el empleado:", self.empleado[i]['nombre'], "es de un 20%", "con un total de descuento de", str(self.impuesto)))
+                comentario = " ".join(("El descuento para el empleado ", self.empleado[i]['nombre'], "es de un 20%", "con un total de descuento de", str(self.impuesto)))
                 self.c_impuesto.append(comentario)
                 #print(f"El decuento para el empleado: ",self.empleado[i]["nombre"],"es de un 20%")
                 #print(f"el total del descuento es de: {self.impuesto}")    
@@ -73,7 +73,7 @@ class trabajador:
             elif(self.empleado[i]["sueldo"]>50000):
                 self.impuesto=self.empleado[i]["sueldo"]*0.35
                 #comentario= f"El decuento para el empleado: ",self.empleado[i]["nombre"], "es de un 35%", f"con un total de descuento de {self.impuesto}"
-                comentario = " ".join(("El descuento para el empleado:", self.empleado[i]['nombre'], "es de un 35%", "con un total de descuento de", str(self.impuesto)))
+                comentario = " ".join(("El descuento para el empleado ", self.empleado[i]['nombre'], "es de un 35%", "con un total de descuento de", str(self.impuesto)))
                 self.c_impuesto.append(comentario)
                 #print(f"El decuento para el empleado: ",self.empleado[i]["nombre"],"es de un 35%")
                 #print(f"el total del descuento es de: {self.impuesto}")
@@ -81,8 +81,10 @@ class trabajador:
     
     def mostrar_calculo_impuesto(self):
         self.calculo_impuesto()
+        print("********** TOTAL DE IMPUESTOS POR EMPLEADOS **********")
         for i in range(3):
             print(self.c_impuesto[i]) 
+        print("******************************************************")
     
     def calculo_afp(self):
         for i in range(3):
