@@ -1,8 +1,12 @@
 class trabajador:
     empleado=[]
+    c_impuesto=[]
+    c_afp=[]
+    c_salud=[]
     impuesto=0
     salud=0
     afp=0
+    comentario= ""
 
     def __init__(self):
         for i in range(3):
@@ -27,7 +31,7 @@ class trabajador:
         if opcion == "1":
             persona1.calculo_sueldoliquido()
         elif opcion == "2":
-            persona1.calculo_impuesto()
+            persona1.mostrar_calculo_impuesto()
         elif opcion == "3":
             persona1.calculo_afp()
         elif opcion == "4":
@@ -43,23 +47,42 @@ class trabajador:
             
             if(self.empleado[i]["sueldo"]<10000):
                 self.impuesto=self.empleado[i]["sueldo"]*0.10
-                print(f"El empleado: ",self.empleado[i]["nombre"],"no paga impuesto")
+                #comentario = f"El empleado: ",self.empleado[i]["nombre"],"no paga impuesto"
+                comentario =  " ".join(("El empleado: ",self.empleado[i]["nombre"],"no paga impuesto"))
+                self.c_impuesto.append(comentario)
+                #print(f"El empleado: ",self.empleado[i]["nombre"],"no paga impuesto")
+                #print (comentario)
                 
             if(self.empleado[i]["sueldo"]>=10000 and self.empleado[i]["sueldo"]<=30000):
                 self.impuesto=self.empleado[i]["sueldo"]*0.10
-                print(f"El decuento para el empleado: ",self.empleado[i]["nombre"],"es de un 10%")
-                print(f"el total del descuento es de: {self.impuesto}")
+                #comentario= f"El decuento para el empleado: ",self.empleado[i]["nombre"], "es de un 10%", f"con un total de descuento de {self.impuesto}"
+                comentario = " ".join(("El descuento para el empleado:", self.empleado[i]['nombre'], "es de un 10%", "con un total de descuento de", str(self.impuesto)))
+                self.c_impuesto.append(comentario)
+                
+                # print(f"El decuento para el empleado: ",self.empleado[i]["nombre"],"es de un 10%")
+                #print(f"el total del descuento es de: {self.impuesto}")
                 
             elif(self.empleado[i]["sueldo"]>30000 and self.empleado[i]["sueldo"]<=50000):
                 self.impuesto=self.empleado[i]["sueldo"]*0.20
-                print(f"El decuento para el empleado: ",self.empleado[i]["nombre"],"es de un 20%")
-                print(f"el total del descuento es de: {self.impuesto}")    
+                #comentario= f"El decuento para el empleado: ",self.empleado[i]["nombre"], "es de un 20%", f"con un total de descuento de {self.impuesto}"
+                comentario = " ".join(("El descuento para el empleado:", self.empleado[i]['nombre'], "es de un 20%", "con un total de descuento de", str(self.impuesto)))
+                self.c_impuesto.append(comentario)
+                #print(f"El decuento para el empleado: ",self.empleado[i]["nombre"],"es de un 20%")
+                #print(f"el total del descuento es de: {self.impuesto}")    
                 
             elif(self.empleado[i]["sueldo"]>50000):
                 self.impuesto=self.empleado[i]["sueldo"]*0.35
-                print(f"El decuento para el empleado: ",self.empleado[i]["nombre"],"es de un 35%")
-                print(f"el total del descuento es de: {self.impuesto}")
-        self.menu()
+                #comentario= f"El decuento para el empleado: ",self.empleado[i]["nombre"], "es de un 35%", f"con un total de descuento de {self.impuesto}"
+                comentario = " ".join(("El descuento para el empleado:", self.empleado[i]['nombre'], "es de un 35%", "con un total de descuento de", str(self.impuesto)))
+                self.c_impuesto.append(comentario)
+                #print(f"El decuento para el empleado: ",self.empleado[i]["nombre"],"es de un 35%")
+                #print(f"el total del descuento es de: {self.impuesto}")
+        #self.menu()
+    
+    def mostrar_calculo_impuesto(self):
+        self.calculo_impuesto()
+        for i in range(3):
+            print(self.c_impuesto[i]) 
     
     def calculo_afp(self):
         for i in range(3):
