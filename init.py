@@ -45,7 +45,7 @@ class trabajador:
         elif opcion == "4":
             persona1.mostrar_calculo_salud()
         elif opcion == "5":
-            print("Esta es la opcion 5") 
+            persona1.ingreso_datos()
 
 
 #**************************************************** calculo de impuesto ****************************************************
@@ -103,6 +103,25 @@ class trabajador:
             sueldo_liquido = sueldo_bruto - (self.v_impuesto[i] + self.v_afp[i] + self.v_salud[i])
             print(f"El sueldo líquido para el empleado",self.empleado[i]['nombre'], f"es de: {sueldo_liquido}")
             #self.menu()
+#**************************************************** Agregar datos a diccionario **********************************************
+
+    def ingreso_datos(self):
+        self.calculo_impuesto()  # Calcula el impuesto
+        self.calculo_afp()  # Calcula el descuento AFP
+        self.calculo_salud()  # Calcula el descuento salud
+        
+        for i in range(3):  
+            diccionario = self.empleado[i]  # Obtener el diccionario existente en cada iteración
+            impuesto = self.v_impuesto[i]  
+            afp = self.v_afp[i]
+            salud = self.v_salud[i]
+            diccionario.update({"impuesto": impuesto, "afp": afp, "salud": salud})#agregamos los nuevos valores al diccionario
+       #print(self.empleado)#print para comprobar el valor nuevo del diciconario
+            
+
+
+
+
         
 #**************************************************** Mostar calculos  ****************************************************
 
@@ -112,7 +131,7 @@ class trabajador:
         print
         for i in range(3):
             print(self.c_impuesto[i]) 
-        print(self.v_impuesto) #print solo para mostrar que hay dentro
+       #print(self.v_impuesto) #print solo para mostrar que hay dentro
         print("******************************************************")
         
         
@@ -121,7 +140,7 @@ class trabajador:
         print("********** DESCUENTO DE AFP POR EMPLEADOS **********")
         for i in range(3):
             print(self.c_afp[i]) 
-        print(self.v_afp) #print solo para mostrar que hay dentro
+        #print(self.v_afp) #print solo para mostrar que hay dentro
         print("******************************************************")
         
         
@@ -130,7 +149,7 @@ class trabajador:
         print("********** DESCUENTO DE SALUD POR EMPLEADOS **********")
         for i in range(3):
             print(self.c_salud[i]) 
-        print(self.v_salud) #print solo para mostrar que hay dentro
+        #print(self.v_salud) #print solo para mostrar que hay dentro
         print("******************************************************")
 
 
