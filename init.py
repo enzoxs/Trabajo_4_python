@@ -1,8 +1,14 @@
 class trabajador:
-    empleado=[]
-    c_impuesto=[]
-    c_afp=[]
-    c_salud=[]
+    empleado=[] # este es el arreglo que guarda el diccionario y los datos de los empleados 
+    c_impuesto=[] # este arreglo guarda el comentario del calculo de impuesto
+    c_afp=[] # este arreglo guarda el comentario del calculo de afp
+    c_salud=[] # este arreglo guarda el comentario del calculo de salud
+    v_impuesto=[] # este arreglo guarda los valor de el calculo de impuesto 
+    v_afp=[] # este arreglo guarda los valor de el calculo de salud 
+    v_salud=[] # este arreglo guarda los valor de el calculo de afp 
+    
+    
+    
     impuesto=0
     salud=0
     afp=0
@@ -45,69 +51,29 @@ class trabajador:
 #**************************************************** calculo de impuesto ****************************************************
     def calculo_impuesto(self):
         
-        for i in range(3):
-            
+        for i in range(3):         
             if(self.empleado[i]["sueldo"]<10000):
-                self.impuesto=self.empleado[i]["sueldo"]*0.10
-                #comentario = f"El empleado: ",self.empleado[i]["nombre"],"no paga impuesto"
+                self.impuesto=0
                 comentario =  " ".join(("El empleado ",self.empleado[i]["nombre"],"no paga impuesto"))
                 self.c_impuesto.append(comentario)
-                #print(f"El empleado: ",self.empleado[i]["nombre"],"no paga impuesto")
-                #print (comentario)
                 
             if(self.empleado[i]["sueldo"]>=10000 and self.empleado[i]["sueldo"]<=30000):
                 self.impuesto=self.empleado[i]["sueldo"]*0.10
-                #comentario= f"El decuento para el empleado: ",self.empleado[i]["nombre"], "es de un 10%", f"con un total de descuento de {self.impuesto}"
                 comentario = " ".join(("El descuento para el empleado ", self.empleado[i]['nombre'], "es de un 10%", "con un total de descuento de", str(self.impuesto)))
-                self.c_impuesto.append(comentario)
-                
-                # print(f"El decuento para el empleado: ",self.empleado[i]["nombre"],"es de un 10%")
-                #print(f"el total del descuento es de: {self.impuesto}")
+                self.c_impuesto.append(comentario) 
                 
             elif(self.empleado[i]["sueldo"]>30000 and self.empleado[i]["sueldo"]<=50000):
                 self.impuesto=self.empleado[i]["sueldo"]*0.20
-                #comentario= f"El decuento para el empleado: ",self.empleado[i]["nombre"], "es de un 20%", f"con un total de descuento de {self.impuesto}"
                 comentario = " ".join(("El descuento para el empleado ", self.empleado[i]['nombre'], "es de un 20%", "con un total de descuento de", str(self.impuesto)))
                 self.c_impuesto.append(comentario)
-                #print(f"El decuento para el empleado: ",self.empleado[i]["nombre"],"es de un 20%")
-                #print(f"el total del descuento es de: {self.impuesto}")    
                 
             elif(self.empleado[i]["sueldo"]>50000):
                 self.impuesto=self.empleado[i]["sueldo"]*0.35
-                #comentario= f"El decuento para el empleado: ",self.empleado[i]["nombre"], "es de un 35%", f"con un total de descuento de {self.impuesto}"
                 comentario = " ".join(("El descuento para el empleado ", self.empleado[i]['nombre'], "es de un 35%", "con un total de descuento de", str(self.impuesto)))
                 self.c_impuesto.append(comentario)
-                #print(f"El decuento para el empleado: ",self.empleado[i]["nombre"],"es de un 35%")
-                #print(f"el total del descuento es de: {self.impuesto}")
+            self.v_impuesto.append(self.impuesto) # aqui guardamos los valores de impuesto de cada uno de los empleados, para sumarlos mas adelante
         #self.menu()
-
-
-#**************************************************** Mostar calculos  ****************************************************
-
-    def mostrar_calculo_impuesto(self):
-        self.calculo_impuesto()
-        print("********** TOTAL DE IMPUESTOS POR EMPLEADOS **********")
-        for i in range(3):
-            print(self.c_impuesto[i]) 
-        print("******************************************************")
         
-        
-    def mostrar_caculo_afp(self):
-        self.calculo_afp()
-        print("********** DESCUENTO DE AFP POR EMPLEADOS **********")
-        for i in range(3):
-            print(self.c_afp[i]) 
-        print("******************************************************")
-        
-        
-    def mostrar_calculo_salud(self):
-        self.calculo_salud()
-        print("********** DESCUENTO DE SALUD POR EMPLEADOS **********")
-        for i in range(3):
-            print(self.c_salud[i]) 
-        print("******************************************************")
-        
-    
     
 #**************************************************** Calculo AFP ****************************************************
     def calculo_afp(self):
@@ -115,16 +81,17 @@ class trabajador:
             self.afp = self.empleado[i]["sueldo"]*0.11
             #print(f"El total a pagar por AFP del empleado ",self.empleado[i]["nombre"],f"es de {self.afp}")
             comentario1 = " ".join(("El total a pagar por AFP del empleado", self.empleado[i]['nombre'], "es de", str(self.afp)))
-            self.c_afp.append(comentario1)       
+            self.c_afp.append(comentario1)
+            self.v_afp.append(self.afp) #guardamos el valor de afp   
        # self.menu()
 #**************************************************** Calculo Salud ****************************************************    
     def calculo_salud(self):
         for i in range(3):
             self.salud = self.empleado[i]["sueldo"]*0.07
-           #print(f"El total a pagar por Salud del empleado ",self.empleado[i]["nombre"],f"es de {self.salud}")
+            #print(f"El total a pagar por Salud del empleado ",self.empleado[i]["nombre"],f"es de {self.salud}")
             comentario2 = " ".join(("El total a pagar por salud del empleado", self.empleado[i]['nombre'], "es de", str(self.salud)))
             self.c_salud.append(comentario2)
-            
+            self.v_salud.append(self.salud) #guardamos el valor de salud
        # self.menu()
 #**************************************************** Calculo sueldo liquido ****************************************************        
     def calculo_sueldoliquido(self):
@@ -133,10 +100,38 @@ class trabajador:
         self.calculo_salud()  # Calcula el descuento salud
         for i in range(3):
             sueldo_bruto = self.empleado[i]["sueldo"]
-            sueldo_liquido = sueldo_bruto - self.impuesto - self.salud - self.afp
+            sueldo_liquido = sueldo_bruto - (self.v_impuesto[i] + self.v_afp[i] + self.v_salud[i])
             print(f"El sueldo líquido para el empleado",self.empleado[i]['nombre'], f"es de: {sueldo_liquido}")
-            self.menu()
+            #self.menu()
         
+#**************************************************** Mostar calculos  ****************************************************
+
+    def mostrar_calculo_impuesto(self):
+        self.calculo_impuesto()
+        print("********** TOTAL DE IMPUESTOS POR EMPLEADOS **********")
+        print
+        for i in range(3):
+            print(self.c_impuesto[i]) 
+        print(self.v_impuesto) #print solo para mostrar que hay dentro
+        print("******************************************************")
+        
+        
+    def mostrar_caculo_afp(self):
+        self.calculo_afp()
+        print("********** DESCUENTO DE AFP POR EMPLEADOS **********")
+        for i in range(3):
+            print(self.c_afp[i]) 
+        print(self.v_afp) #print solo para mostrar que hay dentro
+        print("******************************************************")
+        
+        
+    def mostrar_calculo_salud(self):
+        self.calculo_salud()
+        print("********** DESCUENTO DE SALUD POR EMPLEADOS **********")
+        for i in range(3):
+            print(self.c_salud[i]) 
+        print(self.v_salud) #print solo para mostrar que hay dentro
+        print("******************************************************")
 
 
 #Menu
